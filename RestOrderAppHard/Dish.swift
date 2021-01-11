@@ -9,10 +9,12 @@
 import Foundation
 
 struct Dish {
+    
     var name: String
     var price: Int
     var amount: Int
-    init( name: String, price: Int, amount: Int) {
+    
+    init(name: String, price: Int, amount: Int) {
           
           self.name = name
           self.price = price

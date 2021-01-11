@@ -9,7 +9,7 @@
 import UIKit
 
 class BillViewController: UIViewController {
-
+    
     @IBOutlet weak var tipAmount10: UILabel!
     @IBOutlet weak var tipAmount5: UILabel!
     @IBOutlet weak var finalPriceOutlet: UILabel!
@@ -18,11 +18,10 @@ class BillViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-
+        
     }
     
     @IBAction func countTipButton(_ sender: UIButton) {
-        
         let amount5: Int = Int(Float(totalCost) * 0.05)
         tipAmount5.text = "\(amount5)"
         let amount10: Int = Int(Float(totalCost) * 0.1)
@@ -36,26 +35,21 @@ class BillViewController: UIViewController {
         finalPriceOutlet.text = "Счёт"
         finalPrice.removeAll()
         
-       
+    }
+    
+    private func configure () {
+        finalPriceOutlet.text = "\(totalCost)"
         
     }
-    private func configure () {
-   
-        finalPriceOutlet.text = "\(totalCost)"
-     
-}
     var totalCost: Int {
-    var sum = 0
-                  
-    for dish in finalPrice {
-                  
-               
-sum += dish.price * dish.amount
-                      
-                   
-              }
-    return sum
-}
-
-
+        var sum = 0
+        for dish in finalPrice {
+            sum += dish.price * dish.amount
+            
+        }
+        
+        return sum
+    }
+    
+    
 }

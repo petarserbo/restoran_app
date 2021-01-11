@@ -40,6 +40,7 @@ class ViewController: UIViewController {
         
         performSegue(withIdentifier: "ToTheBill", sender: dishItem)
     }
+    
     func inputNewDish () {
         let alert = UIAlertController(title: "Добавьте новое блюдо", message: "", preferredStyle: .alert)
         let addMagic = UIAlertAction(title: "Добавить", style: .default) { (action) in
@@ -48,32 +49,37 @@ class ViewController: UIViewController {
             let price = Int(priceField.text!)!
             let amountField = alert.textFields![2]
             let amount = Int(amountField.text!)!
-
-        self.addNewDish(with: nameField.text!, andPrice: price, with: amount)
+            
+            self.addNewDish(with: nameField.text!, andPrice: price, with: amount)
             
         }
+        
         addMagic.isEnabled = false
         let cancelButton = UIAlertAction(title: "Отменить", style: .cancel, handler: nil)
         alert.addTextField { (textField) in
             textField.placeholder = "Название блюда"
             
         }
+        
         alert.addTextField { (textField) in
             
             textField.placeholder = "Цена"
             textField.keyboardType = .numberPad
             
         }
+        
         alert.addTextField  { (textField) in
             textField.placeholder = "Количество"
             textField.keyboardType = .numberPad
             
-        
-        NotificationCenter.default.addObserver(forName :UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { (notification) -> Void in
-        addMagic.isEnabled = textField.text!.count > 0
+            
+            NotificationCenter.default.addObserver(forName :UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { (notification) -> Void in
+                addMagic.isEnabled = textField.text!.count > 0
+                
+            }
             
         }
-            }
+        
         alert.addAction(addMagic)
         alert.addAction(cancelButton)
         present(alert, animated: true, completion: nil)
@@ -91,19 +97,19 @@ class ViewController: UIViewController {
         orderStack.addArrangedSubview(label)
         
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToTheBill" {
             guard let secondVC = segue.destination as? BillViewController,
-                let dishItem = sender as? [Dish]
-                else {
-                    fatalError("wrong")
+                  let dishItem = sender as? [Dish]
+            else {
+                fatalError("wrong")
             }
+            
             secondVC.finalPrice = dishItem
             
         }
         
     }
-    
     
 }
