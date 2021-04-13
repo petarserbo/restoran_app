@@ -41,6 +41,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFC25E332626226F002C54A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BFF0292325421DB000D8BC46 /* Dish.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BFC25E3526262286002C54A7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BFF02913254215E200D8BC46 /* ViewController.swift */,
+				BFF029252542425600D8BC46 /* BillViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		BFF02903254215E200D8BC46 = {
 			isa = PBXGroup;
 			children = (
@@ -62,10 +79,9 @@
 			children = (
 				BFF0290F254215E200D8BC46 /* AppDelegate.swift */,
 				BFF02911254215E200D8BC46 /* SceneDelegate.swift */,
-				BFF02913254215E200D8BC46 /* ViewController.swift */,
+				BFC25E3526262286002C54A7 /* Controllers */,
 				BFF02915254215E200D8BC46 /* Main.storyboard */,
-				BFF029252542425600D8BC46 /* BillViewController.swift */,
-				BFF0292325421DB000D8BC46 /* Dish.swift */,
+				BFC25E332626226F002C54A7 /* Model */,
 				BFF02918254215E800D8BC46 /* Assets.xcassets */,
 				BFF0291A254215E800D8BC46 /* LaunchScreen.storyboard */,
 				BFF0291D254215E800D8BC46 /* Info.plist */,
