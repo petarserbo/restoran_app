@@ -11,47 +11,35 @@ import RealmSwift
 
 class ViewController: UIViewController {
     
-    
-    
     @IBOutlet weak var trashButtonOutlet: UIButton!
     @IBOutlet weak var calculateButton: UIButton!
     @IBOutlet weak var orderStack: UIStackView!
     
-//    var dishes: [Dish] = []
     let realm = try! Realm()
     var dishes: Results<Dish>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dishes = realm.objects(Dish.self)
-//        labeling(amount: dishes.count)
+        addLabels()
         
+        
+        
+    }
+    
+    func addLabels(){
         if dishes.count > 0 {
             for index in 0..<dishes.count{
-                var label = UILabel()
-                 let items = dishes[index]
-                label.text = items.name
+                let label = UILabel()
+                let items = dishes[index]
+                label.text = "\(items.name): \(items.price) x \(items.amount)"
                 self.orderStack.addArrangedSubview(label)
             }
         }
         
-        
-        
-        
-        var label = UILabel()
-        
     }
     
-    func labeling(amount: Int){
-        let items = dishes[amount]
-        for i in 0..<amount{
-            var label = UILabel()
-            label.text = items.name
-            
-        }
-       
-        
-    }
+    
     
     @IBAction func addButtonPressed(_ sender: Any) {
         inputNewDish()
@@ -59,7 +47,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func trashButtonPressed(_ sender: Any) {
-       
+        
         try! self.realm.write{
             self.realm.delete(dishes)
         }
@@ -100,10 +88,8 @@ class ViewController: UIViewController {
                 self?.realm.add(myDishes)
             }
             
-            
-           
             let label = UILabel()
-            label.text = "\(myDishes.name) \(myDishes.price) x \(myDishes.amount)"
+            label.text = "\(myDishes.name): \(myDishes.price) x \(myDishes.amount)"
             self?.orderStack.addArrangedSubview(label)
             
         }
@@ -140,22 +126,12 @@ class ViewController: UIViewController {
         
     }
     
-//    func addNewDish(with name: String, andPrice price: Int, with amount:Int) {
-//        let dish = Dish(name: name, price: price, amount: amount)
-//
-//        self.dishes.append(dish)
-//        let label = UILabel()
-//        label.text = "\(dish.name) \(price) x \(amount)"
-//
-//
-//        orderStack.addArrangedSubview(label)
-//
-//    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToTheBill" {
             guard let secondVC = segue.destination as? BillViewController,
-                  let dishItem = sender as? [Dish]
+                  let dishItem = sender as? Results<Dish>
             else {
                 fatalError("wrong")
             }
@@ -165,9 +141,5 @@ class ViewController: UIViewController {
         }
         
     }
-    
-}
-
-extension ViewController{
     
 }
