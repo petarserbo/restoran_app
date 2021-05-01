@@ -7,19 +7,20 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Dish {
+class Dish: Object {
+
     
-    var name: String
-    var price: Int
-    var amount: Int
+    @objc dynamic var name: String = ""
+    @objc dynamic var price: Int = 0
+    @objc dynamic var amount: Int = 0
     
-    init(name: String, price: Int, amount: Int) {
-          
-          self.name = name
-          self.price = price
-          self.amount = amount
-        
-}
+//   convenience init(name: String, price: Int, amount: Int){
+//    self.init()
+//        self.name = name
+//        self.price = price
+//        self.amount = amount
+//    }
 
 }

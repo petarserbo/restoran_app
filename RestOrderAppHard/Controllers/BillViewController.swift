@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BillViewController: UIViewController {
     
     @IBOutlet weak var tipAmount10: UILabel!
     @IBOutlet weak var tipAmount5: UILabel!
     @IBOutlet weak var finalPriceOutlet: UILabel!
-    var finalPrice: [Dish] = []
+    var finalPrice: Results<Dish>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class BillViewController: UIViewController {
         tipAmount5.text = "-"
         tipAmount10.text = "-"
         finalPriceOutlet.text = "Счёт"
-        finalPrice.removeAll()
+        
         
     }
     
