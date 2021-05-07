@@ -21,25 +21,13 @@ class BillViewController: UIViewController {
         configure()
         
     }
-    
-    @IBAction func countTipButton(_ sender: UIButton) {
+
+    private func configure () {
+        finalPriceOutlet.text = "\(totalCost)"
         let amount5: Int = Int(Float(totalCost) * 0.05)
         tipAmount5.text = "\(amount5)"
         let amount10: Int = Int(Float(totalCost) * 0.1)
         tipAmount10.text = "\(amount10)"
-        
-    }
-    
-    @IBAction func clearLabelsButton(_ sender: UIButton) {
-        tipAmount5.text = "-"
-        tipAmount10.text = "-"
-        finalPriceOutlet.text = "Счёт"
-        
-        
-    }
-    
-    private func configure () {
-        finalPriceOutlet.text = "\(totalCost)"
         
     }
     var totalCost: Int {
